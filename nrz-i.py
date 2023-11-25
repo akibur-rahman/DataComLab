@@ -16,7 +16,7 @@ for bit in input:
         flag *= -1
         sr.append(flag)
 
-    print(sr)
+print(sr)
 
 
 plt.step(range(len(sr)), sr, where='post')
