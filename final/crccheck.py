@@ -1,27 +1,54 @@
-def calculate_crc(data):
-    crc = 0xFFFFFFFF
-    for byte in data:
-        crc ^= byte
-        for _ in range(8):
-            if crc & 1:
-                crc = (crc >> 1) ^ 0xEDB88320
-            else:
-                crc >>= 1
-    return crc ^ 0xFFFFFFFF
+# Implement CRC code verification where the input will be given by the user.
+
+def crc_check(message, crc):
+    generator = "1001"  # CRC generator
+
+    # Append crc to message
+    message += crc
+
+    # Pad the message with 0's equivalent to degree of polynomial
+    num_zeros = len(generator) - 1
+    message += "0" * num_zeros
+
+    rem = message  # Initialize remainder to message
+    # Perform modulo 2 division
+    for i in range(len(message)):
+        if rem[i] == "1":
+            rem = xor(rem, generator)  # XOR with generator polynomial
+        rem = rem[1:] + "0"
+
+    # If remainder is all 0's, CRC check passes
+    if rem == "0" * len(rem):
+        return True
+    else:
+        return False
 
 
-def verify_crc(data, crc_value):
-    calculated_crc = calculate_crc(data)
-    return calculated_crc == crc_value
+def xor(a, b):
+    ans = ""
+    len_a = len(a)
+    len_b = len(b)
+    max_len = max(len_a, len_b)
+    for i in range(max_len):
+        bit_a = a[i % len_a]
+        bit_b = b[i % len_b]
+        if bit_a == bit_b:
+            ans += "0"
+        else:
+            ans += "1"
+    return ans
 
 
-# Get input from the user
-data_to_verify = input("Enter the data to verify: ").encode(
-    'utf-8')  # assuming utf-8 encoding for string input
-# assuming input is in hexadecimal format
-crc_value_to_check = int(input("Enter the CRC value to check: "), 16)
+def main():
+    message = input("Enter data: ")
+    crc = input("Enter CRC code: ")
 
-if verify_crc(data_to_verify, crc_value_to_check):
-    print("CRC verification successful!")
-else:
-    print("CRC verification failed!")
+    result = crc_check(message, crc)
+
+    if result:
+        print("CRC Check Passed")
+    else:
+        print("CRC Check Failed")
+
+
+main()
