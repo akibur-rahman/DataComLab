@@ -1,12 +1,8 @@
-# Implement CRC code verification where the input will be given by the user.
+def crc_check(message, crc, generator):
 
-def crc_check(message, crc):
-    generator = "1001"  # CRC generator
-
-    # Append crc to message
     message += crc
 
-    # Pad the message with 0's equivalent to degree of polynomial
+    # Pad the message with 0's equivalent to the degree of the polynomial
     num_zeros = len(generator) - 1
     message += "0" * num_zeros
 
@@ -42,8 +38,9 @@ def xor(a, b):
 def main():
     message = input("Enter data: ")
     crc = input("Enter CRC code: ")
+    generator = input("Enter CRC generator(divisor): ")
 
-    result = crc_check(message, crc)
+    result = crc_check(message, crc, generator)
 
     if result:
         print("CRC Check Passed")
@@ -51,4 +48,5 @@ def main():
         print("CRC Check Failed")
 
 
-main()
+if __name__ == "__main__":
+    main()

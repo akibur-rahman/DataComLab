@@ -2,7 +2,7 @@ def bit_stuffing(arr):
     stuffed_array = []
     count = 0
 
-    print('Enter the flag(3bits):')
+    print('Enter the flag:')
     flag = input()
 
     for bit in arr:
