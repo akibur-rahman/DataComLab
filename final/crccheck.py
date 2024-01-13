@@ -7,7 +7,7 @@ def crc_check(message, crc, generator):
     message += "0" * num_zeros
 
     rem = message  # Initialize remainder to message
-    # Perform modulo 2 division
+    # Performing xor until the remainder's length is less than generator's length
     for i in range(len(message)):
         if rem[i] == "1":
             rem = xor(rem, generator)  # XOR with generator polynomial

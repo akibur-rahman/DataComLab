@@ -51,8 +51,7 @@ def bit_destuffing(arr, change_stream):
 
 
 def main():
-    # N = 6
-    arr = input("Enter the original array (0s and 1s): ")
+    arr = input("Enter the original array: ")
 
     print("Original Array:", arr)
 
@@ -65,7 +64,7 @@ def main():
 
     # Allow the user to change the stuffed data
     if change_stream:
-        new_data = input("Enter the new stuffed data (0s and 1s): ")
+        new_data = input("Enter the new stuffed data: ")
         arr = new_data
 
     destuffed_array = bit_destuffing(arr, change_stream)
