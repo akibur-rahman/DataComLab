@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 if __name__ == '__main__':
 
-    input = [1, 0, 1, 1, 0, 1, 0, 1, 0, 1]
+    input = [0, 1, 1, 0, 0, 1, 0, 1, 1, 1]
     print(input)
 
 sr = []

@@ -14,9 +14,9 @@ for bit in data:
     else:
         sarray.append(1)
 
-    print(sarray)
 
-    # plotting
+print(sarray)
+# plotting
 plt.step(range(len(sarray)), sarray, where='post')
 plt.xlabel('Bit index')
 plt.ylabel('Signal Level')

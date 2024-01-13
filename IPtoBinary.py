@@ -18,3 +18,4 @@ if __name__ == '__main__':
     ip = input("Enter IP address: ")
 
     print(IPtoBinary(ip))
+    exit = input("Enter any key to exit")
